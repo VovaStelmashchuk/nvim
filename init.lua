@@ -32,10 +32,32 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     lazypath,
   })
 end
+
 vim.opt.rtp:prepend(lazypath)
 
-local plugins = {
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000  }
-}
+require("lazy").setup(
+{
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+	config = function()
+    	    require("catppuccin").setup()
+    	    vim.cmd.colorscheme "catppuccin"
+  	end,
+    },
+  {
+	{
+	"nvim-telescope/telescope-file-browser.nvim",
+   	 dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    
+	    config = function()
+    	      require("telescope").setup()
+  	  end,
+	}
 
-require("lazy").setup(plugins, {})
+  }
+}
+)
+
+vim.keymap.set("n", "<space>ff", ":Telescope file_browser<CR>")
