@@ -15,15 +15,15 @@ local function map(mode, lhs, rhs, opts)
 end
 
 
-map("n", "n", "h", { desc = "left" }) -- left
-map("n", "h", "j", { desc = "down" }) -- down
-map("n", "t", "k", { desc = "up" })   -- up
+map("n", "n", "h", { desc = "left" })  -- left
+map("n", "h", "j", { desc = "down" })  -- down
+map("n", "t", "k", { desc = "up" })    -- up
 map("n", "s", "l", { desc = "right" }) -- right
 
 
-map("v", "n", "h", { desc = "left" }) -- left
-map("v", "h", "j", { desc = "down" }) -- down
-map("v", "t", "k", { desc = "up" })   -- up
+map("v", "n", "h", { desc = "left" })  -- left
+map("v", "h", "j", { desc = "down" })  -- down
+map("v", "t", "k", { desc = "up" })    -- up
 map("v", "s", "l", { desc = "right" }) -- right
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
