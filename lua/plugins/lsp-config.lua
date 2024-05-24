@@ -2,21 +2,16 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
       local lspconfig = require("lspconfig")
 
       lspconfig.lua_ls.setup({
+        capabilities = capabilities,
       })
 
       lspconfig.gopls.setup({
-        settings = {
-          gopls = {
-            completeUnimported = true,
-            analyses = {
-              unusedparams = true,
-            },
-            staticcheck = true,
-          },
-        },
+        capabilities = capabilities,
       })
 
       vim.keymap.set('n', '<space>cf', vim.lsp.buf.format, {})

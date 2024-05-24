@@ -44,3 +44,5 @@ require("lazy").setup("plugins")
 
 vim.keymap.set("n", "<space>ff", ":Telescope file_browser<CR>")
 vim.keymap.set("n", "<space>e", ":Neotree left<CR>")
+
+vim.api.nvim_set_option("clipboard", "unnamed")
