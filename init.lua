@@ -1,6 +1,6 @@
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
+vim.opt.expandtab = trueutanou
 vim.opt.softtabstop = 2
 
 local function map(mode, lhs, rhs, opts)
@@ -19,7 +19,6 @@ map("n", "n", "h", { desc = "left" })  -- left
 map("n", "h", "j", { desc = "down" })  -- down
 map("n", "t", "k", { desc = "up" })    -- up
 map("n", "s", "l", { desc = "right" }) -- right
-
 
 map("v", "n", "h", { desc = "left" })  -- left
 map("v", "h", "j", { desc = "down" })  -- down
@@ -45,4 +44,19 @@ require("lazy").setup("plugins")
 vim.keymap.set("n", "<space>ff", ":Telescope file_browser<CR>")
 vim.keymap.set("n", "<space>e", ":Neotree left<CR>")
 
-vim.api.nvim_set_option("clipboard", "unnamed")
+-- Enable system clipboard integration
+local utils = require('utils')
+
+-- Apply configuration if on NixOS
+if utils.is_nixos() then
+  -- Enable system clipboard integration
+  vim.opt.clipboard:append("unnamedplus")
+
+  -- Yank to system clipboard with y
+  vim.api.nvim_set_keymap('n', 'y', '"+y', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('v', 'y', '"+y', { noremap = true, silent = true })
+end
+
+if utils.is_macos() then
+  vim.api.nvim_set_option("clipboard", "+unnamed")
+end
