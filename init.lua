@@ -1,7 +1,8 @@
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
-vim.opt.expandtab = trueutanou
+vim.opt.expandtab = true
 vim.opt.softtabstop = 2
+
 
 local function map(mode, lhs, rhs, opts)
   local options = { noremap = true, silent = true }
