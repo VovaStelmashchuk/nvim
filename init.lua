@@ -43,7 +43,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
 vim.keymap.set("n", "<space>ff", ":Telescope file_browser<CR>")
-vim.keymap.set("n", "<space>e", ":Neotree left<CR>")
 
 -- Enable system clipboard integration
 local utils = require('utils')
