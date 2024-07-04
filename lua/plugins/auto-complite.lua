@@ -13,7 +13,6 @@ return {
     "hrsh7th/nvim-cmp",
     config = function()
       local cmp = require("cmp")
-      require("luasnip.loaders.from_vscode").lazy_load()
 
       cmp.setup({
         snippet = {
@@ -33,8 +32,9 @@ return {
           ['<CR>'] = cmp.mapping.confirm({ select = true }),
         }),
         sources = cmp.config.sources({
-          -- { name = 'nvim_lsp' },
+          { name = 'nvim_lsp' },
           { name = 'luasnip' },
+          { name = 'copilot' },
         }, {
           { name = 'buffer' },
         })
@@ -42,21 +42,6 @@ return {
     end,
   },
   {
-    "github/copilot.vim",
-  },
-  {
-    {
-      "CopilotC-Nvim/CopilotChat.nvim",
-      branch = "canary",
-      dependencies = {
-        { "github/copilot.vim" }, -- or github/copilot.vim
-        { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
-      },
-      opts = {
-        debug = true, -- Enable debugging
-        -- See Configuration section for rest
-      },
-      -- See Commands section for default commands if you want to lazy load on them
-    },
+    "github/copilot.vim"
   }
 }
