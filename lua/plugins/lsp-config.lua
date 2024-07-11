@@ -31,13 +31,8 @@ return {
         capabilities = capabilities,
       })
 
-      lspconfig.gopls.setup({
-        capabilities = capabilities,
-      })
-
       vim.keymap.set('n', '<space>cf', vim.lsp.buf.format, {})
       vim.keymap.set('n', '<space>cd', vim.lsp.buf.definition, {})
-      vim.keymap.set('n', '<space>jd', vim.lsp.buf.definition, {})
       vim.keymap.set('n', '<space>cu', vim.lsp.buf.references, {})
       vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, { silent = true })
     end

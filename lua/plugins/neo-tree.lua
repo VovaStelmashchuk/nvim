@@ -14,10 +14,7 @@ return {
             visible = true,
             hide_dotfiles = false,
             hide_gitignored = false,
-            never_show = {
-              ".DS_Store",
-              "thumbs.db"
-            },
+            never_show = {},
             hide_by_name = {
             }
           }
