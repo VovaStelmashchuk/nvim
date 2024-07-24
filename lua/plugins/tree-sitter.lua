@@ -8,9 +8,11 @@ return {
           enable = true,
         },
         incremental_selection = {
-         enable = true,
+          enable = true,
           keymaps = {
             init_selection = "vb",
+            node_incremental = "si",
+            node_decremental = "sd"
           },
         },
         indent = {
