@@ -79,7 +79,7 @@ return {
           },
           provideFormatter = true
         },
-        root_dir = function(fname)
+        root_dir = function()
           return vim.loop.cwd()
         end,
         settings = {},
