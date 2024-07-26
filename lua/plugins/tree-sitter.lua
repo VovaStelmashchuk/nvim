@@ -5,7 +5,7 @@ return {
     config = function()
       require("nvim-treesitter.configs").setup {
         highlight = {
-          enable = true,
+          enable = false,
         },
         incremental_selection = {
           enable = true,
