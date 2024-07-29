@@ -85,6 +85,10 @@ return {
         settings = {},
         single_file_support = true
       })
+
+      require('lspconfig').cssls.setup({
+        capabilities = capabilities,
+      })
     end
   }
 }

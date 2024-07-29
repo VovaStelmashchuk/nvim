@@ -4,29 +4,11 @@ vim.opt.expandtab = true
 vim.opt.softtabstop = 2
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
-
-local function map(mode, lhs, rhs, opts)
-  local options = { noremap = true, silent = true }
-  if opts then
-    if opts.desc then
-      opts.desc = "keymaps.lua: " .. opts.desc
-    end
-    options = vim.tbl_extend('force', options, opts)
-  end
-  vim.keymap.set(mode, lhs, rhs, options)
-end
+vim.opt.scrolloff = 8
 
 vim.keymap.set('n', '<space>cf', vim.lsp.buf.format, {})
 
-map("n", "n", "h", { desc = "left" })
-map("n", "h", "j", { desc = "down" })
-map("n", "t", "k", { desc = "up" })
-map("n", "s", "l", { desc = "right" })
-
-map("v", "n", "h", { desc = "left" })
-map("v", "h", "j", { desc = "down" })
-map("v", "t", "k", { desc = "up" })
-map("v", "s", "l", { desc = "right" })
+require('dvorak_keymap')
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
