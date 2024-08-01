@@ -13,5 +13,6 @@ return {
     }
 
     vim.keymap.set('n', '<space>ff', builtin.find_files, {})
+    vim.keymap.set('n', '<space>gs', builtin.live_grep, {})
   end
 }

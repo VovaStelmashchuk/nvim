@@ -58,6 +58,9 @@ return {
         -- see :help lsp-zero-keybindings
         -- to learn the available actions
         lsp_zero.default_keymaps({ buffer = bufnr })
+
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'ca', '<cmd>lua vim.lsp.buf.code_action()<CR>',
+          { noremap = true, silent = true })
       end)
 
       -- setup the language servers you have installed.
