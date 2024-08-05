@@ -11,6 +11,7 @@ return {
       })
       vim.keymap.set('n', '<space>tn', ':BufferNext<CR>')
       vim.keymap.set('n', '<space>tg', ':BufferPick<CR>')
+      vim.keymap.set('n', '<space>tc', ':BufferClose<CR>')
     end
   }
 }
