@@ -66,6 +66,7 @@ return {
       -- setup the language servers you have installed.
       require('lspconfig').lua_ls.setup({})
       require('lspconfig').tsserver.setup({})
+      require('lspconfig').jsonls.setup({})
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.textDocument.completion.completionItem.snippetSupport = true

@@ -36,6 +36,7 @@ return {
             },
             ["d"] = "delete",
             ["r"] = "rename",
+            ["p"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
           }
         },
       })
