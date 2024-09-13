@@ -41,46 +41,65 @@ return {
     end
   },
 
-  -- LSP
+  -- LSP and Mason integration
   {
-    'neovim/nvim-lspconfig',
-    cmd = 'LspInfo',
+    'williamboman/mason.nvim',
+    cmd = 'Mason',
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
-      { 'hrsh7th/cmp-nvim-lsp' },
+      'williamboman/mason-lspconfig.nvim', -- Mason integration with nvim-lspconfig
+      'neovim/nvim-lspconfig',             -- LSP support
+      'hrsh7th/cmp-nvim-lsp',              -- Autocompletion
     },
     config = function()
-      -- This is where all the LSP shenanigans will live
+      -- Setup mason.nvim
+      require('mason').setup()
+
+      -- Ensure LSP servers are installed automatically via mason-lspconfig
+      require('mason-lspconfig').setup({
+        ensure_installed = { 'lua_ls', 'tsserver', 'jsonls', 'html', 'cssls' },
+        automatic_installation = true,
+      })
+
+      -- LSP Configuration
       local lsp_zero = require('lsp-zero')
       lsp_zero.extend_lspconfig()
 
+      -- Default on_attach handler
       lsp_zero.on_attach(function(client, bufnr)
-        -- see :help lsp-zero-keybindings
-        -- to learn the available actions
+        -- Keybindings for LSP functions
         lsp_zero.default_keymaps({ buffer = bufnr })
-
         vim.api.nvim_buf_set_keymap(bufnr, 'n', 'ca', '<cmd>lua vim.lsp.buf.code_action()<CR>',
           { noremap = true, silent = true })
       end)
 
-      -- setup the language servers you have installed.
-      require('lspconfig').lua_ls.setup({})
-      require('lspconfig').tsserver.setup({})
+      -- Setup individual language servers
+      require('lspconfig').lua_ls.setup({
+        settings = {
+          Lua = {
+            runtime = { version = 'LuaJIT' },
+            diagnostics = { globals = { 'vim' } },
+            workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+            telemetry = { enable = false },
+          },
+        }
+      })
+
+      require('lspconfig').ts_ls.setup({})
       require('lspconfig').jsonls.setup({})
 
+      -- Capabilities for snippet support in LSP
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+      -- HTML LSP
       require('lspconfig').html.setup({
         capabilities = capabilities,
         cmd = { 'vscode-html-language-server', '--stdio' },
         filetypes = { 'html' },
         init_options = {
           configurationSection = { "html", "css", "javascript" },
-          embeddedLanguages = {
-            css = true,
-            javascript = true
-          },
+          embeddedLanguages = { css = true, javascript = true },
           provideFormatter = true
         },
         root_dir = function()
@@ -90,9 +109,11 @@ return {
         single_file_support = true
       })
 
+      -- CSS LSP
       require('lspconfig').cssls.setup({
         capabilities = capabilities,
       })
     end
-  }
+  },
 }
+
