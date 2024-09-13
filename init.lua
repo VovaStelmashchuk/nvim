@@ -6,7 +6,9 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 vim.opt.scrolloff = 8
 
-vim.keymap.set('n', '<space>cf', vim.lsp.buf.format, {})
+vim.g.mapleader = " "
+
+vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format, {})
 
 require('dvorak_keymap')
 
@@ -30,6 +32,19 @@ local utils = require('utils')
 
 if utils.is_macos() then
   vim.o.clipboard = 'unnamedplus'
+elseif vim.env.SSH_CONNECTION then
+  -- Use OSC52 for clipboard over SSH
+  vim.g.clipboard = {
+    name = 'OSC 52',
+    copy = {
+      ['+'] = require('vim.clipboard.osc52').copy,
+      ['*'] = require('vim.clipboard.osc52').copy,
+    },
+    paste = {
+      ['+'] = require('vim.clipboard.osc52').paste,
+      ['*'] = require('vim.clipboard.osc52').paste,
+    },
+  }
 end
 
 vim.api.nvim_set_keymap('n', 'y', '"+y', { noremap = true, silent = true })

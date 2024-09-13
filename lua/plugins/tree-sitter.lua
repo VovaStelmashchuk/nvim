@@ -3,7 +3,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     run = ":TSUpdate",
     config = function()
-      require("nvim-treesitter.configs").setup {
+      require("nvim-treesitter.configs").setup({
         highlight = {
           enable = false,
         },
@@ -18,7 +18,7 @@ return {
         indent = {
           enable = true
         },
-      }
+      })
     end
   }
 }
