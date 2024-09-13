@@ -10,6 +10,7 @@ return {
         semantic_letters = true,
       })
       vim.keymap.set('n', '<space>tn', ':BufferNext<CR>')
+      vim.keymap.set('n', '<space>tp', ':BufferPrevious<CR>')
       vim.keymap.set('n', '<space>tg', ':BufferPick<CR>')
       vim.keymap.set('n', '<space>tc', ':BufferClose<CR>')
     end

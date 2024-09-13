@@ -25,12 +25,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
--- Connect to system clipboard
-local utils = require('utils')
 
-if utils.is_nixos() then
-  vim.opt.clipboard:append("unnamedplus")
-end
+local utils = require('utils')
 
 if utils.is_macos() then
   vim.o.clipboard = 'unnamedplus'
