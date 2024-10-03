@@ -40,7 +40,6 @@ return {
       })
     end
   },
-
   -- LSP and Mason integration
   {
     'williamboman/mason.nvim',
@@ -57,7 +56,7 @@ return {
 
       -- Ensure LSP servers are installed automatically via mason-lspconfig
       require('mason-lspconfig').setup({
-        ensure_installed = { 'lua_ls', 'ts_ls', 'jsonls', 'html', 'cssls' },
+        ensure_installed = { 'lua_ls', 'ts_ls', 'jsonls', 'html', 'cssls', 'tailwindcss' },
         automatic_installation = true,
       })
 
@@ -115,5 +114,15 @@ return {
       })
     end
   },
+  {
+    "luckasRanarison/tailwind-tools.nvim",
+    name = "tailwind-tools",
+    build = ":UpdateRemotePlugins",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-telescope/telescope.nvim", -- optional
+      "neovim/nvim-lspconfig",       -- optional
+    },
+    opts = {}                        -- your configuration
+  },
 }
-
