@@ -8,7 +8,6 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     opts = {
-      -- configurations go here
     },
   }
 }
