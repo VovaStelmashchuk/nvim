@@ -8,7 +8,6 @@ vim.opt.scrolloff = 8
 
 vim.g.mapleader = " "
 
-vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format, {})
 
 require('dvorak_keymap')
 
